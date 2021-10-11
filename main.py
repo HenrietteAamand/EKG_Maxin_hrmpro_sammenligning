@@ -21,19 +21,20 @@ ekg_rr = ekg.extracct_rr_values('EKG_sammenligningsdata4.txt', timelim_begin, ti
 hrmpro.extract_rr_values('HRMpro_sammenligningsdata4.txt', timelim_begin, timelim_end)
 #print("timelimit_begin: " + str(timelim_begin))
 #print("timelimit_end: " + str(timelim_end))
-hrmpro_rr = hrmpro.get_rr(5)
+hrmpro_rr = hrmpro.get_rr(6)
 hr_hrmpro = hrmpro.get_hr()
 hr_ppg = ppg.get_hr()
-#plotter.plot_hr_ppg_hrmpro(hr_ppg, hr_hrmpro)
-print("length HRM_pro: " + str(len(hrmpro_rr)) + " Length ppg: " + str(len(ppg_rr)) + " Length EKG: " + str(len(ekg_rr)))
+plotter.plot_hr_ppg_hrmpro(hr_ppg, hr_hrmpro)
+#print("length HRM_pro: " + str(len(hrmpro_rr)) + " Length ppg: " + str(len(ppg_rr)) + " Length EKG: " + str(len(ekg_rr)))
 #print(hrmpro_rr)
 
 #writer.SaveLineToFile_ekg_ppg_hrmpro('sammenligning2.txt', ekg_rr, ppg_rr, hrmpro_rr, 0, ppg.get_timestamp())
 
 lag_ppg = kryds.get_korrelation(ekg_rr, ppg_rr)
-#lag_hrmpro = kryds.get_korrelation(ekg_rr, hrmpro_rr)
-lag_ppg = 2
-lag_hrmpro = -2
+lag_hrmpro = kryds.get_korrelation(ekg_rr, hrmpro_rr)
+print(lag_hrmpro)
+#lag_ppg = 0
+lag_hrmpro = -1
 plotter.plot_rr_from_3_sources(ppg_rr,ekg_rr,hrmpro_rr, lag_ppg, lag_hrmpro)
 """
 

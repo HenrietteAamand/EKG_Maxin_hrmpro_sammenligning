@@ -28,8 +28,7 @@ class filereader_class:
         self.timedata = []
         i = 0
         date = str(datetime.datetime.now().date().strftime('%d/%m/%y'))
-        print("EKG: " + str(date))
-        #print("Date: " + date)
+        
         #Denne lille algoritme sørger for at tidsalligne EKG-data med PPG-data
         for line in lines_From_Logfile:
             temp_List = line.split(' ')
@@ -44,7 +43,6 @@ class filereader_class:
                 self.timedata.append(absolute_ekg_time)
             i += 1
         file.close()
-        #print("EKG: " + str(Ekg_data[0]) + " time_start: " + str(self.timedata[0]) + " Timelimit_begin: " + str(timelimit_absolutetime_begin) + " Time_end: " + str(self.timedata[len(self.timedata)-1]) + " Timelimit_end: " + str(timelimit_absolutetime_end))
         return(Ekg_data)
 
         

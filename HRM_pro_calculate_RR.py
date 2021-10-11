@@ -40,7 +40,6 @@ class HRMpro_caculate_rr_class:
             if(old_time > new_time and dict['b0'][2] == '4'):
                 new_time += 65535
                 rollover = True
-                #print(str(i) + ": true: " + str(dict['b2'] + dict['b3']))
             rr = ((new_time-old_time)*1000)/1024
             if(rollover == True): 
                 new_time -= 65535

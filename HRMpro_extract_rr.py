@@ -21,7 +21,7 @@ class HRMpro_extract_class:
                 list_splitted_data[i][0] = self.timestamp.get_timestamp_lenovo_absolute2(int(list_splitted_data[i][0]))
             i += 1
         tid = time.ctime(list_splitted_data[0][0]/1000)
-        print("HRM_pro: " + str(tid))
+        #print("HRM_pro: " + str(tid))
         file.close()
 
         
@@ -50,16 +50,20 @@ class HRMpro_extract_class:
         self.list_of_rr_and_time = self.rr_calculator.rr_4(self.New_list_with_logged_values_as_dictionay)
         return self.list_of_rr_and_time
 
-    def get_rr(self, given_delay):
+    def get_rr(self, given_delay): #given_delay sættes, hvis der ønskes at manipulere med længden af HRM_pro rr værierne
         # Modificerer rr-værdierne ved at udtrække rr værdier uden tiden.
         rr = []
         number = 0
+        addition = 1
         if len(self.list_of_rr_and_time) > 0:
             for dict in self.list_of_rr_and_time:
                 rr.append(dict['rr'])
-                if number == given_delay:
+                if number == given_delay and given_delay != 0:
                    number = -1
                    rr.append(dict['rr'])
+                   addition = addition*-1
+                   print(addition)
+                   given_delay + (addition)
                 number += 1
         else:
             print("please extract rr data with the extract_rr_values-method before getting the rr-values in a separate list")

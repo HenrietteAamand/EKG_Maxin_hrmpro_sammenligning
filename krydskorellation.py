@@ -7,14 +7,14 @@ class krydskorellation_class:
         i = 0
         if(len(ppg_rr) > len(ekg_rr)) :
             difference = len(ppg_rr) - len(ekg_rr)
-            print("ppg is "+ str(difference) + " sample(s) longer than ekg")
+            #print("ppg is "+ str(difference) + " sample(s) longer than ekg")
             while(i<difference):
                 ekg_rr.append(0)
                 i+=1
 
         if(len(ppg_rr) < len(ekg_rr)) :
             difference = len(ekg_rr) - len(ppg_rr)
-            print("ekg is "+ str(difference) + " sample(s) longer than ppg")
+            #print("ekg is "+ str(difference) + " sample(s) longer than ppg")
             while(i<difference):
                 ppg_rr.append(0)
                 i+=1

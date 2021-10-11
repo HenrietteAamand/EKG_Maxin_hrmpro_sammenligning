@@ -14,6 +14,8 @@ class ppg_extract_class:
         self.hr = []
         self.first_time = str(datetime.datetime.now().date().strftime("%d/%m/%y")) + " " + csv_reader[0]['timestmp']
         self.last_time = str(datetime.datetime.now().date().strftime("%d/%m/%y")) + " " + csv_reader[len(csv_reader)-1]['timestmp']
+        print("PPG self.first_time: " + str(self.first_time))
+        print("PPG self.last_time: "+ str(self.last_time))
         
         #Reading each row and deciding what to do with it
         for row in csv_reader:

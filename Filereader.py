@@ -28,6 +28,7 @@ class filereader_class:
         self.timedata = []
         i = 0
         date = str(datetime.datetime.now().date().strftime('%d/%m/%y'))
+        print("EKG: " + str(date))
         #print("Date: " + date)
         #Denne lille algoritme sørger for at tidsalligne EKG-data med PPG-data
         for line in lines_From_Logfile:

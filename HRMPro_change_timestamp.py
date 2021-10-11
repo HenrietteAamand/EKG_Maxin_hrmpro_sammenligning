@@ -19,7 +19,7 @@ class Timestamp_HRMpro_class:
     
     def get_timestamp_lenovo_absolute(self, current_count):
         absolute_time = 1633089995886
-        sensor_count_then = 20924843
+        sensor_count_then =  20924843
         birthtime_sensor = absolute_time-sensor_count_then
         current_absolute_time = birthtime_sensor+current_count
         return current_absolute_time
@@ -31,8 +31,12 @@ class Timestamp_HRMpro_class:
         sensor_count_then = 626718
         birthtime_sensor = absolute_time-sensor_count_then
         current_absolute_time = birthtime_sensor+current_count
+        #print(datetime.datetime.fromtimestamp(current_absolute_time/1000).strftime('%H:%M:%S.%f'))
+        tid_forkert_dato = str(datetime.datetime.now().date().strftime("%d/%m/%y")) + " " + str(datetime.datetime.fromtimestamp(current_absolute_time/1000).strftime('%H:%M:%S.%f'))
+        my_datetime = datetime.datetime.strptime(tid_forkert_dato, '%d/%m/%y %H:%M:%S.%f')
+        absolute_time = int((time.mktime(my_datetime.timetuple())*1000))
         #print(current_absolute_time)
-        return current_absolute_time
+        return absolute_time
         #alternativt
         # return (absolute_time-sensor_count_then)+current_count
 

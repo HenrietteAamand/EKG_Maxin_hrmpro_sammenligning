@@ -32,7 +32,7 @@ print("length HRM_pro: " + str(len(hrmpro_rr)) + " Length ppg: " + str(len(ppg_r
 
 lag_ppg = kryds.get_korrelation(ekg_rr, ppg_rr)
 #lag_hrmpro = kryds.get_korrelation(ekg_rr, hrmpro_rr)
-lag_ppg = -2
+lag_ppg = 2
 lag_hrmpro = -2
 plotter.plot_rr_from_3_sources(ppg_rr,ekg_rr,hrmpro_rr, lag_ppg, lag_hrmpro)
 """

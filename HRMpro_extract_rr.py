@@ -20,6 +20,8 @@ class HRMpro_extract_class:
                 list_splitted_data.append(line.split(':'))
                 list_splitted_data[i][0] = self.timestamp.get_timestamp_lenovo_absolute2(int(list_splitted_data[i][0]))
             i += 1
+        tid = time.ctime(list_splitted_data[0][0]/1000)
+        print("HRM_pro: " + str(tid))
         file.close()
 
         

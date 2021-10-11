@@ -44,7 +44,6 @@ class plotter_class:
             while(i<difference):
                 hrmpro_rr.append(0)
                 i+=1
-
         elif(len(hrmpro_rr) > len(ekg_rr)) :
             difference = len(hrmpro_rr) - len(ekg_rr)
             #print("Hrmpro is "+ str(difference) + " sample(s) longer than ekg")

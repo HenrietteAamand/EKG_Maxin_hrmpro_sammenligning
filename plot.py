@@ -30,7 +30,7 @@ class plotter_class:
         plt.title(title)
         plt.legend()
         plt.axis([0, time[len(time)-1], 0, max(ppg_rr) + 100])
-        #plt.savefig(self.path + str(self.number) + " " + title)
+        plt.savefig(self.path + str(self.number) + " " + title)
         plt.show()
 
     def plot_hr_ppg_hrmpro_ekg(self, hr_first, hr_second, hr_third, label_first, label_second, label_third, title): #Denne metoder plotter hr-værdierne for 3 lister
@@ -53,7 +53,7 @@ class plotter_class:
         plt.ylabel('Hr [bpm]')
         plt.title(title)
         plt.legend()
-        #plt.savefig(self.path + str(self.number) + " " + title)
+        plt.savefig(self.path + str(self.number) + " " + title)
         plt.show()
 
     def plot_hr_ppg_hrmpro(self,hr_first1, hr_second1, label_first, label_second, title, lag_first): #Denne metoder plotter rr-værdierne
@@ -89,7 +89,7 @@ class plotter_class:
         plt.ylabel('Hr [bpm]')
         plt.title(title)
         plt.legend()
-        #plt.savefig(self.path + str(self.number) + " " + title)
+        plt.savefig(self.path + str(self.number) + " " + title)
         plt.show()
 
     def lag_korregtion(self, lag_ppg, lag_hrmpro, correctionvalue):

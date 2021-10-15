@@ -67,8 +67,7 @@ plotter.plot_hr_ppg_hrmpro_ekg(hr_ppg_calculated, hr_hrmpro_calculated, hr_ekg, 
 lag_ppg = kryds.get_korrelation(ekg_rr, ppg_rr, 0)
 lag_hrmpro = kryds.get_korrelation(ekg_rr, hrmpro_rr,0)
 print(lag_hrmpro)
-#lag_ppg = 0
-lag_hrmpro = -1
+print(lag_ppg)
 plotter.plot_rr_from_3_sources(ppg_rr,ekg_rr,hrmpro_rr, lag_ppg, lag_hrmpro, 'rr from ekg, maxrefdes103 and hrmpro')
 
 """

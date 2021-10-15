@@ -62,7 +62,6 @@ class HRMpro_extract_class:
                    number = -1
                    rr.append(dict['rr'])
                    addition = addition*-1
-                   print(addition)
                    given_delay + (addition)
                 number += 1
         else:

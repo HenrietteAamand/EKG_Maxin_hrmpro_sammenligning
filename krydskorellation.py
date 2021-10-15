@@ -3,20 +3,22 @@ import matplotlib.pyplot as plt
 from numpy.core.fromnumeric import argmin
 
 class krydskorellation_class:
-    def get_korrelation(self, ekg_rr, ppg_rr):
+    def get_korrelation(self, ekg_rr1, ppg_rr1, appending_with):
         i = 0
+        ekg_rr = ekg_rr1.copy()
+        ppg_rr = ppg_rr1.copy()
         if(len(ppg_rr) > len(ekg_rr)) :
             difference = len(ppg_rr) - len(ekg_rr)
             #print("ppg is "+ str(difference) + " sample(s) longer than ekg")
             while(i<difference):
-                ekg_rr.append(0)
+                ekg_rr.append(appending_with)
                 i+=1
 
         if(len(ppg_rr) < len(ekg_rr)) :
             difference = len(ekg_rr) - len(ppg_rr)
             #print("ekg is "+ str(difference) + " sample(s) longer than ppg")
             while(i<difference):
-                ppg_rr.append(0)
+                ppg_rr.append(appending_with)
                 i+=1
 
         fig, axs = plt.subplots()

@@ -5,14 +5,15 @@ class plotter_class:
         self.number = number
         self.path = "C:/Users/hah/Documents/VISUAL_STUDIO_CODE/EKG_Maxin_hrmpro_sammenligning/Sammenligningsdata/Figurer/"
     def plot_rr_from_3_sources(self, ppg_rr, ekg_rr, hrmpro_rr, lag_ppg, lag_hrmpro, title):
-        self.ppg_rr = ppg_rr
-        self.hrmpro_rr = hrmpro_rr
-        self.lag_korregtion(lag_ppg,lag_hrmpro, 1000)
+        if(lag_ppg != 0 and lag_hrmpro != 0):
+            self.ppg_rr = ppg_rr
+            self.hrmpro_rr = hrmpro_rr
+            self.lag_korregtion(lag_ppg,lag_hrmpro, 1000)
 
-        # list_corrected = self.correct_3_lists(ppg_rr, hrmpro_rr, ekg_rr, 1000)
-        # ppg_rr = list_corrected[0]
-        # hrmpro_rr = list_corrected[1]
-        # ekg_rr = list_corrected[2]
+            list_corrected = self.correct_3_lists(ppg_rr, hrmpro_rr, ekg_rr, 1000)
+            ppg_rr = list_corrected[0]
+            hrmpro_rr = list_corrected[1]
+            ekg_rr = list_corrected[2]
         
         #Laver plot og plotter rr-værdier
         i = 1

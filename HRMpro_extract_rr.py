@@ -18,7 +18,7 @@ class HRMpro_extract_class:
         for line in lines_From_Logfile:
             if(i >= 0):
                 list_splitted_data.append(line.split(':'))
-                list_splitted_data[i][0] = self.timestamp.get_timestamp_lenovo_absolute2(int(list_splitted_data[i][0]))
+                list_splitted_data[i][0] = self.timestamp.get_timestamp(int(list_splitted_data[i][0]))
             i += 1
         tid = time.ctime(list_splitted_data[0][0]/1000)
         #print("HRM_pro: " + str(tid))

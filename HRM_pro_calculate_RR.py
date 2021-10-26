@@ -1,4 +1,3 @@
-from typing import Dict
 class HRMpro_caculate_rr_class:
     def rr_0(self, Values_in_Hex_List): #den bedste metode i dette tilfælde, da der nogle gange sker noget uvendtet på plads 3 og 2
         old_time = 0

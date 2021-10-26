@@ -4,42 +4,84 @@ class plotter_class:
     def __init__(self, number):
         self.number = number
         self.path = "C:/Users/hah/Documents/VISUAL_STUDIO_CODE/EKG_Maxin_hrmpro_sammenligning/Sammenligningsdata/Figurer/"
-    def plot_rr_from_3_sources(self, ppg_rr, ekg_rr, hrmpro_rr, lag_ppg, lag_hrmpro, title):
-        if(lag_ppg != 0 and lag_hrmpro != 0):
-            self.ppg_rr = ppg_rr
-            self.hrmpro_rr = hrmpro_rr
-            self.lag_korregtion(lag_ppg,lag_hrmpro, 1000)
+    def plot_rr_from_3_sources(self, first_rr1, second_rr1, third_rr1, lag_first, lag_second, label_first, label_second, label_third, title):
+        if(lag_first != 0 or lag_second != 0):
+            self.first_signal = first_rr1.copy()
+            self.second_signal = second_rr1.copy()
+            self.lag_korregtion(lag_first,lag_second, 1000)
 
-            list_corrected = self.correct_3_lists(ppg_rr, hrmpro_rr, ekg_rr, 1000)
-            ppg_rr = list_corrected[0]
-            hrmpro_rr = list_corrected[1]
-            ekg_rr = list_corrected[2]
+            print("Lag korrected!")
+
+            list_corrected = self.correct_length_3_lists(self.first_signal, self.second_signal, third_rr1, 1000)
+            first_rr = list_corrected[0].copy()
+            second_rr = list_corrected[1].copy()
+            third_rr = list_corrected[2].copy()
+            
         
         #Laver plot og plotter rr-værdier
         i = 1
         time = []
-        for value in hrmpro_rr:
+        for value in second_rr:
             time.append(i)
             i += 1
 
-        laengde = len(hrmpro_rr)
-        plt.plot(time[0:laengde], ppg_rr[0:laengde], label="Mexrefdes103", color='b')
-        plt.plot(time[0:laengde], hrmpro_rr[0:laengde], label="hrmpro",color='k')
-        plt.plot(time[0:laengde], ekg_rr[0:laengde], label="Ekg", color='r')
+        laengde = len(second_rr)
+        plt.plot(time[0:laengde], first_rr[0:laengde], label=label_first, color='b')
+        plt.plot(time[0:laengde], second_rr[0:laengde], label=label_second,color='k')
+        plt.plot(time[0:laengde], third_rr[0:laengde], label=label_third, color='r')
         plt.xlabel('samples')
         plt.ylabel('RR intervals [ms]')
         plt.title(title)
         plt.legend()
-        plt.axis([0, time[len(time)-1], 0, max(ppg_rr) + 100])
+        plt.axis([0, time[len(time)-1], 0, max(first_rr) + 100])
         plt.savefig(self.path + str(self.number) + " " + title)
         plt.show()
 
-    def plot_hr_ppg_hrmpro_ekg(self, hr_first, hr_second, hr_third, label_first, label_second, label_third, title): #Denne metoder plotter hr-værdierne for 3 lister
-        
-        # list_corrected = self.correct_3_lists(hr_first, hr_second, hr_third, 60)
-        # hr_first = list_corrected[0]
-        # hr_second = list_corrected[1]
-        # hr_third = list_corrected[2]
+    def plot_rr_from_2_sources(self, first_rr1, second_rr1, lag, label_first, label_second, title):
+        first_rr = []
+        second_rr = []
+        if(lag != 0):
+            self.first_signal = first_rr1
+            self.lag_korregtion(lag, 0, 1000)
+
+            list_corrected = self.correct_length_3_lists(first_rr1, second_rr1, [], 1000)
+            first_rr = list_corrected[0].copy()
+            second_rr = list_corrected[1].copy()
+        else:
+            first_rr = first_rr1.copy()
+            second_rr = second_rr1.copy()
+
+        #Laver plot og plotter rr-værdier
+        i = 1
+        time = []
+        for value in first_rr:
+            time.append(i)
+            i += 1
+
+        laengde = len(first_rr)-1
+        plt.plot(time[0:laengde], first_rr[0:laengde], label=label_first, color='k')
+        plt.plot(time[0:laengde], second_rr[0:laengde], label=label_second,color='r')
+        plt.xlabel('samples')
+        plt.ylabel('RR intervals [ms]')
+        plt.title(title)
+        plt.legend()
+        plt.axis([0, time[len(time)-1], 0, max(first_rr) + 100])
+        plt.savefig(self.path + str(self.number) + " " + title)
+        plt.show()
+
+    def plot_hr_ppg_hrmpro_ekg(self, hr_first1, hr_second2, hr_third3, label_first, label_second, label_third, title): #Denne metoder plotter hr-værdierne for 3 lister
+        print(len(hr_first1))
+        print(len(hr_second2))
+        print(len(hr_third3))
+
+        list_corrected = self.correct_length_3_lists(hr_first1, hr_second2, hr_third3, 60)
+        hr_first = list_corrected[0].copy()
+        hr_second = list_corrected[1].copy()
+        hr_third = list_corrected[2].copy()
+
+        print(len(hr_first))
+        print(len(hr_second))
+        print(len(hr_third))
 
         i = 1
         time = []
@@ -62,11 +104,11 @@ class plotter_class:
         if(lag_first != 0):
             print("length of " + label_first + ": " + str(len(hr_first1)))
             print("length of " + label_second + ": " + str(len(hr_second1)))
-            self.ppg_rr = hr_first1.copy()
-            self.hrmpro_rr = hr_second1.copy()
+            self.first_signal = hr_first1.copy()
+            self.second_signal = hr_second1.copy()
             self.lag_korregtion(lag_first,0, 60)
-            hr_first = self.ppg_rr.copy()
-            hr_second = self.hrmpro_rr.copy()
+            hr_first = self.first_signal.copy()
+            hr_second = self.second_signal.copy()
             print("length of " + label_first + ": " + str(len(hr_first)))
             print("length of " + label_second + ": " + str(len(hr_second)))
            
@@ -74,7 +116,7 @@ class plotter_class:
             hr_first = hr_first1.copy()
             hr_second = hr_second1.copy()
         if(len(hr_first)!= len(hr_second)):
-            list_corrected = self.correct_3_lists(hr_first, hr_second, [], 60)
+            list_corrected = self.correct_length_3_lists(hr_first, hr_second, [], 60)
             hr_first = list_corrected[0].copy()
             hr_second = list_corrected[1].copy()
 
@@ -97,28 +139,43 @@ class plotter_class:
         #Korrigerer for lag
         if(lag_hrmpro > 0):
             while lag_hrmpro != 0:
-                self.hrmpro_rr.insert(0,correctionvalue)
+                self.second_signal.insert(0,correctionvalue)
                 lag_hrmpro += -1
         elif(lag_hrmpro<0):
             while(lag_hrmpro!=0):
-                self.hrmpro_rr.pop(0)
+                self.second_signal.pop(0)
                 lag_hrmpro += 1
         
         if(lag_ppg > 0):
             while lag_ppg != 0:
-                self.ppg_rr.insert(0,correctionvalue)
+                self.first_signal.insert(0,correctionvalue)
                 lag_ppg += -1
         elif(lag_ppg<0):
             while(lag_ppg!=0):
-                self.ppg_rr.pop(0)
+                print("length of ppg: " + str(len(self.first_signal)))
+                self.first_signal.pop(0)
                 lag_ppg += 1
+            print("length of ppg: " + str(len(self.first_signal)))
         
-    def correct_3_lists(self, list_a, list_b, list_c, append_with_value):
+    def correct_length_3_lists(self, list_a, list_b, list_c, append_with_value):
         dictionary= {}
         lengths = []
-        dictionary[len(list_a)] = list_a
-        dictionary[len(list_b)] = list_b
-        dictionary[len(list_c)] = list_c
+        len_lista = len(list_a)
+        len_listb = len(list_b)
+        len_listc = len(list_c)
+        
+        dictionary[len_lista] = list_a
+        if(len_lista != len_listb): dictionary[len_listb] = list_b
+        else: 
+            len_listb += 1
+            list_b.append(append_with_value)
+            dictionary[len_listb] = list_b
+        if(len_lista != len_listc and len_listb!=len_listc): dictionary[len_listc] = list_c
+        else:
+            while(len_lista == len(list_c) or len_listb == len(list_c)):
+                list_c.append(append_with_value)
+            len_listc = len(list_c)
+            dictionary[len_listc] = list_c
 
         lengths.append(len(list_a))
         lengths.append(len(list_b))
@@ -126,11 +183,37 @@ class plotter_class:
 
         lengths.sort()
 
-        i = 1
+        i = 2
         for element in dictionary:
-            while(len(dictionary[lengths[len(lengths)-1]]) > len(dictionary[lengths[len(lengths)-i]])):
-                dictionary[lengths[len(lengths)-i]].append(append_with_value)
+            len_longest_list = len(dictionary[lengths[len(lengths)-1]])
+            len_current_list = len(dictionary[lengths[len(lengths)-i]])
+            while(len_longest_list > len_current_list ): # (Længden af den længste liste > længden af den liste vi er i gang med)
+                print("Making longer: " + str(len(dictionary[lengths[len(lengths)-i]])))
+                dictionary[lengths[len(lengths)-i]].append(append_with_value) #forlænger den for korte liste med 'append_with_value')
+                len_current_list += 1 #len(dictionary[lengths[len(lengths)-i]])
             i += 1
+        print(len(dictionary[lengths[len(lengths)-i]]))
         corrected_length = [list_a, list_b, list_c]
-
+        corrected_length = [dictionary[len_lista], dictionary[len_listb], dictionary[len_listc]]
+        print(len(corrected_length[0]) )
+        print(len(corrected_length[1]) )
+        print(len(corrected_length[2]) )
         return corrected_length
+    
+    def plot_ekg(self, r_indexes, ekg_signal):
+        i = 1
+        time = []
+        for value in ekg_signal:
+            time.append(i)
+            i += 1
+
+        y = []
+        for r_index in r_indexes:
+            y.append(ekg_signal[r_index])
+
+        laengde = len(ekg_signal)
+        plt.plot(time[0:laengde], ekg_signal[0:laengde], color='k')
+        plt.stem(r_indexes, y)
+        plt.xlabel('samples')
+        plt.ylabel('Filtered ECG data')
+        plt.show()

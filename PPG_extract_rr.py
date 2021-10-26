@@ -31,12 +31,12 @@ class ppg_extract_class:
     def get_timestamp(self):
         return self.timestamp
 
-    def getAbsoluteTime_first(self):
+    def getAbsoluteTime_begin(self):
         my_datetime = datetime.datetime.strptime(self.first_time, '%d/%m/%y %H:%M:%S.%f')
         absolute_time = int((time.mktime(my_datetime.timetuple())*1000))
         return absolute_time
     
-    def getAbsoluteTime_last(self):
+    def getAbsoluteTime_end(self):
         my_datetime = datetime.datetime.strptime(self.last_time, '%d/%m/%y %H:%M:%S.%f')
         absolute_time = int("{:.0f}".format(time.mktime(my_datetime.timetuple())*1000))
         return absolute_time

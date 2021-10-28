@@ -18,7 +18,7 @@ class hr_calculator_class:
             rr_to_hr_list = rr_to_hr_list[to_save:]
         return hr_list
 
-    def Calculate_hr_from_rr_resiprokke(self, rr_list):
+    def Calculate_hr_as_resiprokke(self, rr_list):
         hr_list = []
         for rr in rr_list:
             hr_list.append(60000/rr)

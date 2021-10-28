@@ -8,7 +8,7 @@ class plotter_class:
         if(lag_first != 0 or lag_second != 0):
             self.first_signal = first_rr1.copy()
             self.second_signal = second_rr1.copy()
-            self.lag_korregtion(lag_first,lag_second, 1000)
+            self.lag_correction(lag_first,lag_second, 1000)
 
             print("Lag korrected!")
 
@@ -42,7 +42,7 @@ class plotter_class:
         second_rr = []
         if(lag != 0):
             self.first_signal = first_rr1
-            self.lag_korregtion(lag, 0, 1000)
+            self.lag_correction(lag, 0, 1000)
 
             list_corrected = self.correct_length_3_lists(first_rr1, second_rr1, [], 1000)
             first_rr = list_corrected[0].copy()
@@ -106,7 +106,7 @@ class plotter_class:
             print("length of " + label_second + ": " + str(len(hr_second1)))
             self.first_signal = hr_first1.copy()
             self.second_signal = hr_second1.copy()
-            self.lag_korregtion(lag_first,0, 60)
+            self.lag_correction(lag_first,0, 60)
             hr_first = self.first_signal.copy()
             hr_second = self.second_signal.copy()
             print("length of " + label_first + ": " + str(len(hr_first)))
@@ -135,7 +135,7 @@ class plotter_class:
         plt.savefig(self.path + str(self.number) + " " + title)
         plt.show()
 
-    def lag_korregtion(self, lag_ppg, lag_hrmpro, correctionvalue):
+    def lag_correction(self, lag_ppg, lag_hrmpro, correctionvalue):
         #Korrigerer for lag
         if(lag_hrmpro > 0):
             while lag_hrmpro != 0:

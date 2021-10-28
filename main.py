@@ -1,9 +1,9 @@
 from Correction_of_lists_with_different_lengths import correction_class
-from Ekg_extract_ibi import*
-from PPG_extract_rr import*
+from Ekg_extract_class import*
+from PPG_extract_class import*
 from Filewriter_class import*
 from krydskorellation import*
-from HRMpro_extract_rr import*
+from HRMpro_extract_class import*
 from plot import *
 from hr_calculator import*
 from Correction_of_lists_with_different_lengths import *
@@ -21,8 +21,8 @@ plotter = plotter_class(nummer)
 
 # Udtrækker r-r værdier fra data
 ppg_rr = ppg.extract_rr_values('ppg_sammenligningsdata' + str(nummer) + '.csv')
-timelim_begin = ppg.getAbsoluteTime_begin()
-timelim_end  = ppg.getAbsoluteTime_end()
+timelim_begin = ppg.getUnixtime_begin()
+timelim_end  = ppg.getUnixtime_end()
 ekg_rr = ekg.extracct_rr_values('EKG_sammenligningsdata' + str(nummer) + '.txt', timelim_begin, timelim_end)
 hrmpro.extract_rr_values('HRMpro_sammenligningsdata' + str(nummer) + '.txt', timelim_begin, timelim_end)
 

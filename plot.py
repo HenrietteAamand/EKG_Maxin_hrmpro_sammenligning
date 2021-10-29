@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 class plotter_class:
     def __init__(self, number):
         self.number = number
-        self.path = "C:/Users/hah/Documents/VISUAL_STUDIO_CODE/EKG_Maxin_hrmpro_sammenligning/Sammenligningsdata/Figurer/"
+        #self.path = "C:/Users/hah/Documents/VISUAL_STUDIO_CODE/EKG_Maxin_hrmpro_sammenligning/Sammenligningsdata/Figurer/"
+        self.path = "C:/Users/Bruger/OneDrive - Aarhus universitet/Praktik/test af maxim/hrmpro_ekg_maxrefdes103/"
     def plot_rr_from_3_sources(self, ppg_rr, ekg_rr, hrmpro_rr, lag_ppg, lag_hrmpro, title):
         if(lag_ppg != 0 and lag_hrmpro != 0):
             self.ppg_rr = ppg_rr

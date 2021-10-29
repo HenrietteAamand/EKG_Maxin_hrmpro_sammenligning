@@ -1,8 +1,8 @@
 import biosppy
 import numpy as np
-import pyhrv.tools as tools
-import csv
-from opensignalsreader import OpenSignalsReader
+# import pyhrv.tools as tools
+# import csv
+# from opensignalsreader import OpenSignalsReader
 
 class HRVpy_class:
     def get_RtoR(EKG_data_list):

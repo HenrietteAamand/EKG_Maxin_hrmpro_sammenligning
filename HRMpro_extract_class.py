@@ -1,9 +1,9 @@
-from HRMPro_change_timestamp import *
+from HRMPro_Timestamp_class import *
 from HRM_pro_calculate_RR import HRMpro_caculate_rr_class
 
 class HRMpro_extract_class:
     def __init__(self) -> None:
-        self.timestamp = Timestamp_HRMpro_class()
+        self.timestamp = HRMpro_Timestamp_class()
         self.rr_calculator = HRMpro_caculate_rr_class()
 
     def extract_rr_values(self, filename, timelim_begin, timelim_end):
@@ -18,7 +18,7 @@ class HRMpro_extract_class:
         for line in lines_From_Logfile:
             if(i >= 0):
                 list_splitted_data.append(line.split(':'))
-                list_splitted_data[i][0] = self.timestamp.get_timestamp_lenovo_absolute2(int(list_splitted_data[i][0]))
+                list_splitted_data[i][0] = self.timestamp.get_timestamp(int(list_splitted_data[i][0]))
             i += 1
         tid = time.ctime(list_splitted_data[0][0]/1000)
         #print("HRM_pro: " + str(tid))

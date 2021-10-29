@@ -3,7 +3,7 @@ from HRM_pro_calculate_RR import HRMpro_caculate_rr_class
 
 class HRMpro_extract_class:
     def __init__(self) -> None:
-        self.timestamp = HRMpro_Timestamp_class()
+        self.timestamp = HRMpro_Timestamp_class(1633587754347, 626718)
         self.rr_calculator = HRMpro_caculate_rr_class()
 
     def extract_rr_values(self, filename, timelim_begin, timelim_end):

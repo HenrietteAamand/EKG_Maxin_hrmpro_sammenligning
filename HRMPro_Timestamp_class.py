@@ -1,9 +1,7 @@
 import time
 import datetime
 class HRMpro_Timestamp_class:
-    def __init__(self):
-        absolute_time = 1633587754347
-        sensor_count_at_absolute_time = 626718
+    def __init__(self, absolute_time, sensor_count_at_absolute_time ):
         self.birthtime_sensor = absolute_time-sensor_count_at_absolute_time
 
     def get_timestamp(self, current_count):

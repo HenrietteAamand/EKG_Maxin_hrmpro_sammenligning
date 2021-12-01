@@ -14,11 +14,11 @@ while(n > 0):
 #ListOfAbsolutes.append(miliseconds)
 
 
-while i < 200:
+while i < 500:
     miliseconds = time.time()*1000
     print(str(i) + ":  " + str(miliseconds))
     i+= 1
-    time.sleep(0.05)
+    time.sleep(0.02)
 
 # i = 1
 # differens = []
